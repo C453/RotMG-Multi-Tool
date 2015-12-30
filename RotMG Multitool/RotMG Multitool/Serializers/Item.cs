@@ -24,7 +24,7 @@ namespace RotMG_Multitool.Serializers
         public static int RateOfFire { get; set; }
         public static int BagType { get; set; }
 
-        public static void Serialize()
+        public static string Serialize()
         {
             ItemCreatorForm form = new ItemCreatorForm();
             try
@@ -125,6 +125,7 @@ namespace RotMG_Multitool.Serializers
                 var dlr = MessageBox.Show(writer.ToString(), "Finished XML", MessageBoxButtons.YesNo);
                 if (dlr == DialogResult.Yes)
                 {
+                    return doc.OuterXml;
                     MessageBox.Show("Saving generated XML file to \r\n" + fullFileName);
                     doc.Save(fullFileName);
                 }
@@ -133,6 +134,7 @@ namespace RotMG_Multitool.Serializers
             {
                 MessageBox.Show(ex.ToString(), caption: "Error");
             }
+            return string.Empty;
         }
     }
 }
